@@ -7,12 +7,12 @@ const run = () => {
   if (allReviewsElement.innerHTML.includes('good')) return;
 
   const fiveStars = document
-    .querySelectorAll('tr[role="image"]')[0]
+    .querySelectorAll('tr[role="img"]')[0]
     .ariaLabel.match(/(?<=stars,\s)(\d*),*(\d*)/g)?.[0];
 
   const fiveStarsAsNumber = Number(fiveStars.split(',').join(''));
   const oneStars = document
-    .querySelectorAll('tr[role="image"]')[4]
+    .querySelectorAll('tr[role="img"]')[4]
     .ariaLabel.match(/(?<=stars,\s)(\d*),*(\d*)/g)?.[0];
 
   const oneStarsAsNumber = Number(oneStars.split(',').join(''));
@@ -35,7 +35,7 @@ let hasRun = false;
 const observer = new MutationObserver(function () {
   const url = location.href;
 
-  if (document.querySelector('tr[role="image"]'))
+  if (document.querySelector('tr[role="img"]'))
     if (url !== lastUrl || !hasRun) {
       lastUrl = url;
       hasRun = true;

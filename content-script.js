@@ -17,15 +17,17 @@ const run = () => {
 
   const oneStarsAsNumber = Number(oneStars.split(',').join(''));
 
-  const score = fiveStarsAsNumber - oneStarsAsNumber;
+  const absoluteScore = fiveStarsAsNumber - oneStarsAsNumber;
 
   const allReviews = allReviewsElement.innerText.match(/(\d*),*(\d*)/g)?.[0];
 
   const allReviewsAsNumber = Number(allReviews.split(',').join(''));
 
-  const scorePercentage = Math.round((score / allReviewsAsNumber) * 100);
+  const ratio = absoluteScore / allReviewsAsNumber;
 
-  allReviewsElement.innerHTML = `${score} good reviews, ${scorePercentage}%`;
+  const calculatedScore = Math.round(absoluteScore * ratio);
+
+  allReviewsElement.innerHTML = `${calculatedScore} good reviews, ${Math.round(ratio * 100, 2)}%`;
 };
 
 let lastUrl = location.href;

@@ -1,10 +1,13 @@
+const addCommas = (x) => {
+  return x.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+};
 const run = () => {
   let allReviewsElement = document.querySelector('[jsan="7.gm2-caption"]');
 
   if (!allReviewsElement.innerHTML)
     allReviewsElement = document.querySelector('button[jsaction="pane.rating.moreReviews"]');
 
-  if (allReviewsElement.innerHTML.includes('good')) return;
+  if (allReviewsElement.innerHTML.includes('score')) return;
 
   const fiveStars = document
     .querySelectorAll('tr[role="img"]')[0]
@@ -27,7 +30,9 @@ const run = () => {
 
   const calculatedScore = Math.round(absoluteScore * ratio);
 
-  allReviewsElement.innerHTML = `${calculatedScore} good reviews, ${Math.round(ratio * 100, 2)}%`;
+  allReviewsElement.innerHTML = `${addCommas(String(calculatedScore))} score (${Math.round(
+    ratio * 100
+  )}%)`;
 };
 
 let lastUrl = location.href;

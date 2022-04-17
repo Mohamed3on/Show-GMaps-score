@@ -2,10 +2,12 @@ const addCommas = (x) => {
   return x.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 };
 const run = () => {
-  let allReviewsElement = document.querySelector('[jsan="7.gm2-caption"]');
+  let allReviewsElement = document.querySelector('button[jsaction="pane.rating.moreReviews"]');
 
-  if (!allReviewsElement.innerHTML)
-    allReviewsElement = document.querySelector('button[jsaction="pane.rating.moreReviews"]');
+  if (!allReviewsElement)
+    allReviewsElement = document.querySelector(
+      'button[jsaction="pane.reviewChart.moreReviews"] ~ div'
+    );
 
   if (allReviewsElement.innerHTML.includes('score')) return;
 
@@ -22,17 +24,19 @@ const run = () => {
 
   const absoluteScore = fiveStarsAsNumber - oneStarsAsNumber;
 
-  const allReviews = allReviewsElement.innerText.match(/(\d*),*(\d*)/g)?.[0];
+  const allReviews = allReviewsElement.innerText.match(/\d*\.*,*\d*/g)?.[0];
 
-  const allReviewsAsNumber = Number(allReviews.split(',').join(''));
+  const allReviewsAsNumber = Number(allReviews.split(/[.,]/g).join(''));
 
-  const ratio = absoluteScore / allReviewsAsNumber;
+  const ratio = score / allReviewsAsNumber;
 
-  const calculatedScore = Math.round(absoluteScore * ratio);
+  const calculatedScore = Math.round(score * ratio);
 
-  allReviewsElement.innerHTML = `${addCommas(String(calculatedScore))} score (${Math.round(
-    ratio * 100
-  )}%)`;
+  const scorePercentage = Math.round(ratio * 100);
+
+  allReviewsElement.innerHTML = `score: ${addCommas(
+    String(calculatedScore)
+  )} — ${scorePercentage}%`;
 };
 
 let lastUrl = location.href;

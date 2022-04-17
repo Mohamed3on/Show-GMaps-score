@@ -22,7 +22,7 @@ const run = () => {
 
   const oneStarsAsNumber = Number(oneStars.split(',').join(''));
 
-  const absoluteScore = fiveStarsAsNumber - oneStarsAsNumber;
+  const score = fiveStarsAsNumber - oneStarsAsNumber;
 
   const allReviews = allReviewsElement.innerText.match(/\d*\.*,*\d*/g)?.[0];
 

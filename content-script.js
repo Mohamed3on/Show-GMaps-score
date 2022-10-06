@@ -1,11 +1,7 @@
 const addCommas = (x) => {
   return x.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 };
-const run = () => {
-  let allReviewsElement = document.querySelector('button[jsaction="pane.rating.moreReviews"]');
-
-  if (!allReviewsElement || allReviewsElement.innerHTML.includes('score')) return;
-
+const run = (allReviewsElement) => {
   const fiveStars = document
     .querySelectorAll('tr[role="img"]')[0]
     .ariaLabel.match(/(?<=stars,\s)(\d*),*(\d*)/g)?.[0];
@@ -34,22 +30,14 @@ const run = () => {
   )} — ${scorePercentage}%`;
 };
 
-let lastUrl = location.href;
-
-let hasRun = false;
-
 const observer = new MutationObserver(function () {
-  const url = location.href;
-
-  if (document.querySelector('tr[role="img"]'))
-    if (url !== lastUrl || !hasRun) {
-      lastUrl = url;
-      hasRun = true;
-      run();
-    }
+  const allReviewsElement = document.querySelector('button[jsaction="pane.rating.moreReviews"]');
+  if (allReviewsElement && !allReviewsElement.innerHTML.includes('score')) {
+    run(allReviewsElement);
+  }
 });
 
-observer.observe(document.getElementById('pane'), {
+observer.observe(document.body, {
   childList: true,
   subtree: true,
 });

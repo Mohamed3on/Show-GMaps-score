@@ -1,12 +1,12 @@
 {
   "manifest_version": 2,
   "name": "Show Google maps place score",
-  "version": "0.11",
+  "version": "1.0",
   "description": "Shows custom score for Google Maps places",
   "author": "Mohamed Oun",
   "content_scripts": [
     {
-      "matches": ["*://*.google.com/maps/*"],
+      "matches": ["*://*.google.com/maps/place/*"],
       "js": ["content-script.js"],
       "run_at": "document_end"
     }

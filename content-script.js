@@ -4,12 +4,7 @@ const addCommas = (x) => {
 const run = () => {
   let allReviewsElement = document.querySelector('button[jsaction="pane.rating.moreReviews"]');
 
-  if (!allReviewsElement)
-    allReviewsElement = document.querySelector(
-      'button[jsaction="pane.reviewChart.moreReviews"] ~ div'
-    );
-
-  if (allReviewsElement.innerHTML.includes('score')) return;
+  if (!allReviewsElement || allReviewsElement.innerHTML.includes('score')) return;
 
   const fiveStars = document
     .querySelectorAll('tr[role="img"]')[0]

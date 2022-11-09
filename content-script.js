@@ -31,7 +31,9 @@ const run = (allReviewsElement) => {
 };
 
 const observer = new MutationObserver(function () {
-  const allReviewsElement = document.querySelector('button[jsaction="pane.rating.moreReviews"]');
+  const allReviewsElement = document.querySelector(
+    '[jsaction="pane.rating.moreReviews"] > span:nth-child(2) > span > span'
+  );
   if (allReviewsElement && !allReviewsElement.innerHTML.includes('score')) {
     run(allReviewsElement);
   }

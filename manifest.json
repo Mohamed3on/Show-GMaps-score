@@ -1,6 +1,7 @@
 {
   "manifest_version": 2,
   "name": "CreamCrop - Google Maps",
+
   "version": "1.0",
   "description": "Shows custom CreamCrop score for Google Maps places",
   "author": "Mohamed Oun",
@@ -10,5 +11,10 @@
       "js": ["content-script.js"],
       "run_at": "document_end"
     }
-  ]
+  ],
+  "icons": {
+    "48": "icon.png",
+    "128": "icon.png",
+    "512": "icon.png"
+  }
 }

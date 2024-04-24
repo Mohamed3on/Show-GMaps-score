@@ -16,7 +16,7 @@ const run = (placeDetailsElement) => {
   const score = fiveStarsAsNumber - oneStarsAsNumber;
 
   const allReviews = document
-    .querySelector('button[jsaction="pane.reviewChart.moreReviews"]')
+    .querySelector('[jsaction="pane.reviewChart.moreReviews"] button')
     .innerText.match(/\d*\.*,*\d*/g)?.[0];
 
   const allReviewsAsNumber = Number(allReviews.split(/[.,]/g).join(''));

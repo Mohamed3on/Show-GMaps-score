@@ -1,5 +1,5 @@
 {
-  "manifest_version": 2,
+  "manifest_version": 3,
   "name": "CreamCrop - Google Maps",
 
   "version": "1.0",
@@ -12,6 +12,7 @@
       "run_at": "document_end"
     }
   ],
+  "host_permissions": ["*://*.google.com/maps/*"],
   "icons": {
     "48": "icon.png",
     "128": "icon.png",

@@ -15,11 +15,13 @@ const run = (placeDetailsElement) => {
 
   const score = fiveStarsAsNumber - oneStarsAsNumber;
 
-  const allReviews = document
-    .querySelector('[jsaction="pane.reviewChart.moreReviews"] button')
-    .innerText.match(/\d*\.*,*\d*/g)?.[0];
+  const allReviewsText = document.querySelector(
+    '[jsaction="pane.reviewChart.moreReviews"] button'
+  ).innerText;
 
-  const allReviewsAsNumber = Number(allReviews.split(/[.,]/g).join(''));
+  const allReviewsMatch = allReviewsText.match(/\d+/g)?.join('');
+
+  const allReviewsAsNumber = Number(allReviewsMatch || 0);
 
   const ratio = score / allReviewsAsNumber;
 
